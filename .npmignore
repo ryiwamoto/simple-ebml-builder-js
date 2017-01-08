@@ -1,0 +1,8 @@
+.tmp
+src/
+test/
+typings/
+perf/
+performance.json
+tsconfig.json
+tslint.json

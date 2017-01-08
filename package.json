@@ -1,0 +1,41 @@
+{
+  "name": "simple-ebml-builder",
+  "version": "0.1.0",
+  "description": "Simple DSL for building EBML byte array (mkv/webm).",
+  "keywords": [
+    "ebml",
+    "mkv",
+    "webm"
+  ],
+  "repository": "https://github.com/ryiwamoto/simple-ebml-builder-js.git",
+  "main": "build/index.js",
+  "types": "build/dts/index.js",
+  "devDependencies": {
+    "@types/benchmark": "^1.0.30",
+    "@types/mocha": "^2.2.33",
+    "@types/node": "0.0.2",
+    "@types/power-assert": "^1.4.29",
+    "baseline": "^0.3.0",
+    "benchmark": "^2.1.2",
+    "espower-typescript": "^6.0.1",
+    "mocha": "^3.2.0",
+    "power-assert": "^1.4.2",
+    "ts-node": "^1.7.2",
+    "tslint": "^4.2.0",
+    "typescript": "^2.1.4"
+  },
+  "scripts": {
+    "build": "rm -rf build && tsc --declaration --rootDir ./src --outDir ./build --declarationDir ./build/dts",
+    "test": "mocha --compilers ts:espower-typescript/guess test/**/*.spec.ts",
+    "test:watch": "mocha --watch --compilers ts:espower-typescript/guess test/**/*.spec.ts",
+    "lint": "tslint './{src,test, perf}/**/*.ts'",
+    "benchmark:test": "ts-node ./node_modules/.bin/baseline -b performance.json ./perf/ebml.perf.ts",
+    "benchmark:update": "ts-node ./node_modules/.bin/baseline -b performance.json ./perf/ebml.perf.ts -u",
+    "prepublish": "npm run build"
+  },
+  "author": "ryiwamoto <konnpekigan@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "lodash.memoize": "^4.1.2"
+  }
+}
