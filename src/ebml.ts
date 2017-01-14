@@ -59,8 +59,12 @@ export const string = memoize((str: string): Value => {
     return bytes(stringToByteArray(str));
 });
 
-export const element = (id: Uint8Array, child: EBMLData | EBMLData[], isSizeUnknown: boolean = false): EBMLData => {
-    return new Element(id, Array.isArray(child) ? child : [child], isSizeUnknown);
+export const element = (id: Uint8Array, child: EBMLData | EBMLData[]): EBMLData => {
+    return new Element(id, Array.isArray(child) ? child : [child], false);
+};
+
+export const unknownSizeElement = (id: Uint8Array, child: EBMLData | EBMLData[]): EBMLData => {
+    return new Element(id, Array.isArray(child) ? child : [child], true);
 };
 
 export const build = (v: EBMLData): Uint8Array => {

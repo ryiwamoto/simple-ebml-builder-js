@@ -65,7 +65,7 @@ describe("EBML", () => {
 
     it("Size of the Element is unknown", () => {
         const id = Uint8Array.of(0x1A, 0x45, 0xDF, 0xA3);
-        const result = EBML.build(EBML.element(id, [EBML.number(0x01)], true));
+        const result = EBML.build(EBML.unknownSizeElement(id, [EBML.number(0x01)]));
         const expected = Uint8Array.of(
             0x1A, 0x45, 0xDF, 0xA3, 0x01, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0x01,
         );

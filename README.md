@@ -15,8 +15,8 @@ import * as EBML from "simple-ebml-builder";
 // EBML element object. The name is EBMLVersion and body is 1. The Size is generated automatically.
 EBML.element(EBML.ID.EBMLVersion, EBML.number(1));
 
-// When isSizeUnknown option is true, 0x01FFFFFFFFFFFFFF is assigned as the element size.
-EBML.element(EBML.ID.EBMLVersion, EBML.number(1), true /* isSizeUnknown */);
+// 0x01FFFFFFFFFFFFFF is assigned as the element size for unknownSizeElement.
+EBML.unknownSizeElement(EBML.ID.EBMLVersion, EBML.number(1));
 
 // Element can have multiple elements.
 EBML.element(EBML.ID.Info, [
