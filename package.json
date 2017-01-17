@@ -9,7 +9,7 @@
   ],
   "repository": "https://github.com/ryiwamoto/simple-ebml-builder-js.git",
   "main": "build/index.js",
-  "types": "build/dts/index.js",
+  "types": "build/dts/index.d.ts",
   "devDependencies": {
     "@types/benchmark": "^1.0.30",
     "@types/mocha": "^2.2.33",
