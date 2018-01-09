@@ -74,21 +74,21 @@ export const build = (v: EBMLData): Uint8Array => {
 };
 
 export const getEBMLByteLength = (num: number): number => {
-    if (num < 0x80) {
+    if (num < 0x7f) {
         return 1;
-    } else if (num < 0x4000) {
+    } else if (num < 0x3fff) {
         return 2;
-    } else if (num < 0x200000) {
+    } else if (num < 0x1fffff) {
         return 3;
-    } else if (num < 0x10000000) {
+    } else if (num < 0xfffffff) {
         return 4;
-    } else if (num < 0x080000000) {
+    } else if (num < 0x7ffffffff) {
         return 5;
-    } else if (num < 0x04000000000) {
+    } else if (num < 0x3ffffffffff) {
         return 6;
-    } else if (num < 0x02000000000000) {
+    } else if (num < 0x1ffffffffffff) {
         return 7;
-    } else if (num < 0x010000000000000) {
+    } else if (num < 0x100000000000000) {
         return 8;
     } else {
         throw new Error(`data size must be less than or equal to ${2 ** 56 - 2}`);
