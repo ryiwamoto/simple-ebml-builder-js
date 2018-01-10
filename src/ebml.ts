@@ -88,10 +88,12 @@ export const getEBMLByteLength = (num: number): number => {
         return 6;
     } else if (num < 0x1ffffffffffff) {
         return 7;
-    } else if (num < 0x100000000000000) {
+    } else if (num < 0x20000000000000) {
         return 8;
+    } else if (num < 0xffffffffffffff) {
+        throw new Error("EBMLgetEBMLByteLength: number exceeds Number.MAX_SAFE_INTEGER");
     } else {
-        throw new Error(`data size must be less than or equal to ${2 ** 56 - 2}`);
+        throw new Error("EBMLgetEBMLByteLength: data size must be less than or equal to " + (Math.pow(2, 56) - 2));
     }
 };
 
