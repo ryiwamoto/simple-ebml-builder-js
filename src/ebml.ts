@@ -52,7 +52,7 @@ export const number = memoize((num: number): Value => {
 });
 
 export const vintEncodedNumber = memoize((num: number): Value => {
-    return bytes(vintEncode(numberToByteArray(num)));
+    return bytes(vintEncode(numberToByteArray(num, getEBMLByteLength(num))));
 });
 
 export const string = memoize((str: string): Value => {
