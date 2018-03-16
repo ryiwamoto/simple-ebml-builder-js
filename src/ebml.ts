@@ -52,7 +52,7 @@ export const number = memoize((num: number): Value => {
 });
 
 export const vintEncodedNumber = memoize((num: number): Value => {
-    return bytes(vintEncode(numberToByteArray(num)));
+    return bytes(vintEncode(numberToByteArray(num, getEBMLByteLength(num))));
 });
 
 export const string = memoize((str: string): Value => {
@@ -74,24 +74,26 @@ export const build = (v: EBMLData): Uint8Array => {
 };
 
 export const getEBMLByteLength = (num: number): number => {
-    if (num < 0x80) {
+    if (num < 0x7f) {
         return 1;
-    } else if (num < 0x4000) {
+    } else if (num < 0x3fff) {
         return 2;
-    } else if (num < 0x200000) {
+    } else if (num < 0x1fffff) {
         return 3;
-    } else if (num < 0x10000000) {
+    } else if (num < 0xfffffff) {
         return 4;
-    } else if (num < 0x080000000) {
+    } else if (num < 0x7ffffffff) {
         return 5;
-    } else if (num < 0x04000000000) {
+    } else if (num < 0x3ffffffffff) {
         return 6;
-    } else if (num < 0x02000000000000) {
+    } else if (num < 0x1ffffffffffff) {
         return 7;
-    } else if (num < 0x010000000000000) {
+    } else if (num < 0x20000000000000) {
         return 8;
+    } else if (num < 0xffffffffffffff) {
+        throw new Error("EBMLgetEBMLByteLength: number exceeds Number.MAX_SAFE_INTEGER");
     } else {
-        throw new Error(`data size must be less than or equal to ${2 ** 56 - 2}`);
+        throw new Error("EBMLgetEBMLByteLength: data size must be less than or equal to " + (Math.pow(2, 56) - 2));
     }
 };
 
