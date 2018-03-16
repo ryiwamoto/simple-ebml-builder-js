@@ -26,7 +26,7 @@
   },
   "scripts": {
     "build": "rm -rf build && tsc --declaration --rootDir ./src --outDir ./build --declarationDir ./build/dts",
-    "test": "mocha --compilers ts:espower-typescript/guess test/**/*.spec.ts",
+    "test": "npm run lint && mocha --compilers ts:espower-typescript/guess test/**/*.spec.ts",
     "test:watch": "mocha --watch --compilers ts:espower-typescript/guess test/**/*.spec.ts",
     "lint": "tslint './{src,test, perf}/**/*.ts'",
     "benchmark:test": "ts-node ./node_modules/.bin/baseline -b performance.json ./perf/ebml.perf.ts",
