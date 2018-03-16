@@ -5,7 +5,7 @@ Simple DSL for building EBML byte array (mkv/webm).
 
 ## install
 ```
-npm install simple-ebml-buidler
+npm install simple-ebml-builder
 ```
 
 ## Sample code
